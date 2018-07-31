@@ -20,5 +20,7 @@ RUN ./nomacro.pl
 RUN ./configure
 RUN make
 
-ENTRYPOINT ["./minerd", "-o", "$POOL", "-u", "$ADDRESS"]
-CMD "./minerd -o stratum+tcp://pool.merit.me:3333 -u @evan"
+ENV POOL "stratum+tcp://pool.merit.me:3333"
+ENV ADDRESS "@evan"
+
+ENTRYPOINT ./minerd -o $POOL -u $ADDRESS
